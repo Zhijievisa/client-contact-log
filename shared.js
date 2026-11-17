@@ -2,6 +2,8 @@
  * Where data lives (nothing is sent anywhere else):
  *   card   t.set('card',  'shared', 'log', {...})   the contact records of each card
  *   board  t.set('board', 'shared', 'cfg', {...})   language, stale-contact days, channels, muted lists
+ *   member t.set('member', 'private', 'who', '…')   the "logged by" label this person typed, for their next record
+ * No Trello profile data (name, username, avatar, email) is read or stored.
  * Trello limit: 4096 characters of serialized data per card (scope/visibility pair), so each card
  * holds a few dozen records. Old records are exported and removed with "Archive old records".
  */
@@ -9,10 +11,10 @@
   'use strict';
 
   var CCL = {
-    VERSION: '1.1.0', KEY: 'log', CFG_KEY: 'cfg',
+    VERSION: '1.1.1', KEY: 'log', CFG_KEY: 'cfg',
     HARD_LIMIT: 4096,   // Trello's limit for card/shared
     SIZE_LIMIT: 4000,   // what this Power-Up allows itself, leaving a margin
-    WARN_PCT: 85, TEXT_MAX: 600, PREVIEW: 5,
+    WARN_PCT: 85, TEXT_MAX: 600, WHO_MAX: 24, WHO_KEY: 'who', PREVIEW: 5,
     BUILTIN: ['w', 'p', 'e', 'm', 's', 'o']
   };
   var STR = root.CCL_STR || (typeof require === 'function' ? require('./i18n.js') : { en: {}, zh: {} });
@@ -86,7 +88,7 @@
   /* ---------- data shape ----------
    * stored   {v, rv, m:[names], e:[[id, t, ch, dir, who, text], …], a?, at?}
    *   rv   revision counter, bumped on every save
-   *   m    names of the people who logged records; an entry's `who` is an index into it (-1 = unknown)
+   *   m    "logged by" labels as typed by the people who logged records; an entry's `who` is an index into it (-1 = none)
    *   t    minutes since epoch            ch   built-in code (w p e m s o) or a custom channel name
    *   dir  0 client contacted us · 1 we contacted the client
    *   a    number of records archived and removed from the card     at  time of the newest archived record
@@ -159,6 +161,7 @@
     for (var k = 0; k < log.e.length; k++) {
       if (log.e[k].i === id) {
         log.e[k].t = en.t; log.e[k].c = en.c || 'o'; log.e[k].d = en.d ? 1 : 0; log.e[k].x = String(en.x || '').trim();
+        if (typeof en.w === 'string') log.e[k].w = en.w;
         log.e.sort(byTime);
         return true;
       }
@@ -356,6 +359,7 @@
           x4: 'Told the client the application has been lodged.', x5: 'Client asked about progress; replied it is still in the queue.', x6: 'Closing meeting; returned originals.' };
     var store = {
       board: {},
+      who: { member: N.me },
       lists: [{ id: 'l1', name: N.l1 }, { id: 'l2', name: N.l2 }, { id: 'l3', name: N.l3 }],
       cards: [
         { id: 'c1', name: N.c + 'A', idList: 'l1' },
@@ -392,7 +396,7 @@
         }
         if (scope === 'board') store.board[key] = clone(value);
         else { store[key] = store[key] || {}; store[key][cardId(scope)] = clone(value); }
-        fire();
+        if (scope !== 'member') fire();
         return Promise.resolve();
       },
       remove: function (scope, vis, key) {
@@ -405,7 +409,6 @@
       cards: function () { return Promise.resolve(store.cards.slice()); },
       lists: function () { return Promise.resolve(store.lists.slice()); },
       card: function () { return Promise.resolve(clone(store.cards[0])); },
-      member: function () { return Promise.resolve({ id: 'm1', fullName: N.me }); },
       getContext: function () { return { card: 'c1', permissions: { card: 'write', board: 'write' } }; },
       isMemberSignedIn: function () { return true; },
       sizeTo: function () { return Promise.resolve(); },

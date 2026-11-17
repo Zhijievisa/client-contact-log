@@ -3,6 +3,8 @@
  * and writes it back, so a colleague's record added a moment earlier is not overwritten.
  * Trello reloads this iframe after every t.set on the card (including sets made by other Power-Ups),
  * so a half-typed record is kept in sessionStorage and restored after a reload.
+ * "Logged by" is a label each person types once (kept in their own member/private plugin data). The
+ * Power-Up does not read or store Trello profile data such as names, usernames or avatars.
  */
 (function () {
   'use strict';
@@ -12,7 +14,7 @@
     var log = CCL.normalize(null), cfg = CCL.cfg(null);
     var me = '', cardId = '', cardName = '';
     var canWrite = true, saving = false, err = '', info = '';
-    var form = null;                // {id, t, c, d, x} while the form is open
+    var form = null;                // {id, t, c, d, x, w} while the form is open
     var showAll = false, panel = null, armedDelete = null;
     var archN = 0, archOk = false, copied = false;
 
@@ -40,7 +42,8 @@
         var d = JSON.parse(raw);
         if (!d || typeof d.x !== 'string' || !isFinite(+d.t)) return;
         if (d.id && !log.e.some(function (en) { return en.i === d.id; })) { clearDraft(); return; }
-        form = { id: d.id || null, t: Math.floor(+d.t), c: String(d.c || 'w'), d: d.d ? 1 : 0, x: d.x.slice(0, CCL.TEXT_MAX) };
+        form = { id: d.id || null, t: Math.floor(+d.t), c: String(d.c || 'w'), d: d.d ? 1 : 0, x: d.x.slice(0, CCL.TEXT_MAX),
+          w: typeof d.w === 'string' ? d.w.slice(0, CCL.WHO_MAX) : me };
         info = tr('draft_restored');
       } catch (e) { /* ignore a damaged draft */ }
     }
@@ -50,14 +53,14 @@
       return Promise.all([
         t.get('card', 'shared', CCL.KEY),
         t.get('board', 'shared', CCL.CFG_KEY),
-        soft(t.member('id', 'fullName')),
+        soft(t.get('member', 'private', CCL.WHO_KEY)),
         soft(t.card('id', 'name'))
       ]).then(function (r) {
         cfg = CCL.cfg(r[1]);
         if (!CCL.canSee(t)) { CCL.fill(root, [h('div', { class: 'note info', text: tr('no_access') })]); resize(); return; }
         if (saving) return;
         log = CCL.normalize(r[0]);
-        me = r[2] && r[2].fullName ? String(r[2].fullName) : '';
+        me = typeof r[2] === 'string' ? r[2].slice(0, CCL.WHO_MAX) : '';
         if (r[3]) { cardId = r[3].id || cardId; cardName = r[3].name || ''; }
         if (!form && canWrite) restoreDraft();
         draw();
@@ -102,8 +105,8 @@
     function openForm(en) {
       var chans = CCL.channelList(cfg);
       form = en
-        ? { id: en.i, t: en.t, c: en.c, d: en.d, x: en.x }
-        : { id: null, t: CCL.nowMin(), c: chans[0].k, d: 0, x: '' };
+        ? { id: en.i, t: en.t, c: en.c, d: en.d, x: en.x, w: en.w || '' }
+        : { id: null, t: CCL.nowMin(), c: chans[0].k, d: 0, x: '', w: me };
       panel = null; armedDelete = null; err = ''; info = '';
       draw();
       var ta = root.querySelector('textarea.txt');
@@ -117,14 +120,22 @@
       if (!text) { err = tr('err_text'); draw(); return; }
       if (form.t === null || !isFinite(form.t)) { err = tr('err_when'); draw(); return; }
       if (form.t > CCL.nowMin() + 5) { err = tr('err_future'); draw(); return; }
-      var f = { id: form.id, t: form.t, c: form.c, d: form.d, x: text.slice(0, CCL.TEXT_MAX), w: me };
-      // Trello may reload this iframe the moment the save lands, before the code below runs, so the
-      // draft is dropped first and put back only if the save fails.
-      clearDraft();
-      commit(function (cur) {
-        if (f.id) return CCL.updateEntry(cur, f.id, f) ? null : tr('err_gone');
-        CCL.addEntry(cur, f);
-        return null;
+      var f = { id: form.id, t: form.t, c: form.c, d: form.d, x: text.slice(0, CCL.TEXT_MAX), w: String(form.w || '').trim().slice(0, CCL.WHO_MAX) };
+      // Remember the label for this person's next record (new records only; a failure here is harmless).
+      var remember = Promise.resolve();
+      if (!f.id && f.w !== me) {
+        remember = Promise.resolve(f.w ? t.set('member', 'private', CCL.WHO_KEY, f.w) : t.remove('member', 'private', CCL.WHO_KEY))
+          .then(function () { me = f.w; }, function () { /* the record is still saved */ });
+      }
+      remember.then(function () {
+        // Trello may reload this iframe the moment the save lands, before the code below runs, so the
+        // draft is dropped first and put back only if the save fails.
+        clearDraft();
+        return commit(function (cur) {
+          if (f.id) return CCL.updateEntry(cur, f.id, f) ? null : tr('err_gone');
+          CCL.addEntry(cur, f);
+          return null;
+        });
       }).then(function (ok) {
         if (!ok) { saveDraft(); return; }
         form = null; draw();
@@ -154,6 +165,8 @@
           Array.prototype.forEach.call(seg.children, function (b, i) { b.className = i === d ? 'on' : ''; });
         } });
       }));
+      var who = h('input', { type: 'text', class: 'who', maxlength: String(CCL.WHO_MAX), placeholder: tr('ph_who'), value: form.w || '',
+        oninput: function () { form.w = who.value; saveDraft(); } });
       var counter = h('span', { class: 'muted small', text: tr('chars', form.x.length, CCL.TEXT_MAX) });
       var ta = h('textarea', { class: 'txt', maxlength: String(CCL.TEXT_MAX), placeholder: tr('ph_text'),
         oninput: function () { form.x = ta.value; counter.textContent = tr('chars', form.x.length, CCL.TEXT_MAX); saveDraft(); clearErr(); },
@@ -165,7 +178,8 @@
         h('div', { class: 'frow' }, [
           h('label', {}, [h('span', { text: tr('f_when') }), when]),
           h('label', {}, [h('span', { text: tr('f_ch') }), ch]),
-          h('label', {}, [h('span', { text: tr('f_dir') }), seg])
+          h('label', {}, [h('span', { text: tr('f_dir') }), seg]),
+          h('label', {}, [h('span', { text: tr('f_who') }), who])
         ]),
         ta,
         h('div', { class: 'foot' }, [

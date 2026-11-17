@@ -17,7 +17,7 @@ Power-Up ID: `6afbc51a9774e9c6d48078d4`
 | Field | Value |
 |---|---|
 | Privacy policy URL | `https://zhijievisa.github.io/client-contact-log/privacy.html` |
-| Stores personal data outside Trello? | No. All data is stored in Trello Power-Up storage on the user's board. |
+| Does your app store any Trello user personal data? | No. It does not read or store Trello profile data. "Logged by" is a label the user types; all data stays in Trello Power-Up storage. |
 
 ## Listing
 
@@ -51,7 +51,7 @@ On a client card, Comments end up doing two jobs. The team uses them to talk to 
 
 1. Open a card and click "+ Log a client contact" in the Client contact log section.
 2. Pick the channel (phone, email, meeting, WeChat, SMS or your own), who initiated the contact, and write a short summary.
-3. Save. The record is added to the card with the time and your name, newest first.
+3. Save. The record is added to the card with the time and your initials, newest first.
 
 **What you see on the card**
 
@@ -121,7 +121,8 @@ Help and support: https://zhijievisa.github.io/client-contact-log/support.html
 
 > 1. Enable the Power-Up on a board. A short welcome modal opens.
 > 2. Open any card and scroll to "Client contact log". Click "+ Log a client contact", choose a channel and
->    "From client" or "To client", type a summary and click "Save record" (or Ctrl+Enter).
+>    "From client" or "To client", type your initials in "Logged by", type a summary and click "Save record"
+>    (or Ctrl+Enter).
 > 3. The record appears in the section. Close the card: the card front shows the badge "Contact today".
 > 4. Add a second record and set its time to 40 days ago, then delete the first record (✕ twice): the badge
 >    shows "Contact 40d ago" in red.
@@ -134,8 +135,9 @@ Help and support: https://zhijievisa.github.io/client-contact-log/support.html
 **Data and privacy:**
 
 > All data is stored in Trello Power-Up storage (card/shared and board/shared). There is no external server, no
-> third-party account, no analytics and no tracking. No personal data is stored outside Trello. An unsaved draft
-> is kept in the browser's session storage until it is saved or cancelled.
+> third-party account, no analytics and no tracking. No personal data is stored outside Trello. The Power-Up does
+> not read Trello profile data (name, username, email, avatar): "Logged by" is a label the user types. An unsaved
+> draft is kept in the browser's session storage until it is saved or cancelled.
 
 **Why some viewers see less (if asked about the "shared perspective" guideline):**
 

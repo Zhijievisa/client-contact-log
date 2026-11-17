@@ -3,10 +3,10 @@
 A Trello Power-Up that keeps a record of every contact with the client on the card itself, so that
 Comments & activity can stay for the team's internal notes.
 
-Each record has the time, the channel, who initiated the contact, who logged it and a short summary. Card
+Each record has the time, the channel, who initiated the contact, a "logged by" label and a short summary. Card
 badges and a board overview show which clients have gone longest without contact.
 
-Version 1.1.0 · English and 简体中文
+Version 1.1.1 · English and 简体中文
 
 ## Features
 
@@ -21,7 +21,8 @@ Version 1.1.0 · English and 简体中文
 ## Data and privacy
 
 Static front-end files only. There is no server and no database. Records are stored in Trello Power-Up storage
-on the user's own board (`card/shared/log` and `board/shared/cfg`). See `privacy.html`.
+on the user's own board (`card/shared/log`, `board/shared/cfg`, and the user's own `member/private/who`
+label). No Trello profile data (name, username, email, avatar) is read or stored. See `privacy.html`.
 
 Trello allows 4096 characters of Power-Up data per card, and counts one Chinese character as one character
 (checked on a live board). Measured with this code:

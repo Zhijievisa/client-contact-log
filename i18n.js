@@ -39,6 +39,8 @@
   add('f_when', 'When', '时间');
   add('f_ch', 'Channel', '渠道');
   add('f_dir', 'Initiated by', '发起方');
+  add('f_who', 'Logged by', '记录人');
+  add('ph_who', 'Your name or initials', '你的名字或缩写');
   add('ph_text', 'What was said or agreed (Ctrl+Enter to save)', '沟通摘要：说了什么、约定了什么（Ctrl+Enter 保存）');
   add('save', 'Save record', '保存记录');
   add('save_edit', 'Save changes', '保存修改');
