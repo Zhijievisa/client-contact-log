@@ -66,7 +66,7 @@ Opening `section.html`, `overview.html` or `settings.html` outside Trello shows 
 
 ## Self-hosting
 
-1. Serve this folder over HTTPS (for example GitHub Pages).
+1. Serve this folder over HTTPS from a host that applies the `_headers` file (Cloudflare Pages, Netlify). The live copy is at https://client-contact-log.pages.dev/.
 2. https://trello.com/power-ups/admin → **New** → Iframe connector URL: `https://<your-host>/index.html`.
 3. **Capabilities**, switch on these six:
    Board buttons · Card back section · Card badges · Card detail badges · On enable · Show settings

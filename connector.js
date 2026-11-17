@@ -12,7 +12,7 @@
   }
 
   function openOverview(t) {
-    return t.modal({ url: './overview.html', title: tr('ov_title'), height: 640, fullscreen: false });
+    return t.modal({ url: './overview', title: tr('ov_title'), height: 640, fullscreen: false });
   }
 
   // Known issue TRELLO-1820: with a card open, the 'card' scope inside card-badges can resolve to the
@@ -48,7 +48,7 @@
         return {
           title: tr('sec_title'),
           icon: ICON_GRAY,
-          content: { type: 'iframe', url: t.signUrl('./section.html'), height: 96 }
+          content: { type: 'iframe', url: t.signUrl('./section'), height: 96 }
         };
       });
     },
@@ -63,13 +63,13 @@
     // Shown once, right after someone enables the Power-Up on a board.
     'on-enable': function (t) {
       return withCfg(t).then(function () {
-        return t.modal({ url: './welcome.html', title: tr('wel_title'), height: 470, fullscreen: false });
+        return t.modal({ url: './welcome', title: tr('wel_title'), height: 470, fullscreen: false });
       });
     },
 
     'show-settings': function (t) {
       return withCfg(t).then(function () {
-        return t.popup({ title: tr('set_title'), url: './settings.html', height: 520 });
+        return t.popup({ title: tr('set_title'), url: './settings', height: 520 });
       });
     }
   });

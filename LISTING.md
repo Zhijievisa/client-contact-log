@@ -7,21 +7,21 @@ Power-Up ID: `6afbc51a9774e9c6d48078d4`
 | Field | Value |
 |---|---|
 | Name | Client Contact Log |
-| Iframe connector URL | `https://zhijievisa.github.io/client-contact-log/index.html` |
+| Iframe connector URL | `https://client-contact-log.pages.dev/` |
 | Author | ZHIJIEVISA PTY LTD |
 | Email | info@zhijievisa.com |
-| Support contact | info@zhijievisa.com (help page: `https://zhijievisa.github.io/client-contact-log/support.html`) |
+| Support contact | info@zhijievisa.com (help page: `https://client-contact-log.pages.dev/support`) |
 
 ## Privacy and compliance
 
 | Field | Value |
 |---|---|
-| Privacy policy URL | `https://zhijievisa.github.io/client-contact-log/privacy.html` |
+| Privacy policy URL | `https://client-contact-log.pages.dev/privacy` |
 | Does your app store any Trello user personal data? | No. It does not read or store Trello profile data. "Logged by" is a label the user types; all data stays in Trello Power-Up storage. |
 
 ## Listing
 
-**Icon (URL field, 144 × 144 px, HTTPS):** `https://zhijievisa.github.io/client-contact-log/listing-icon-144.png`
+**Icon (URL field, 144 × 144 px, HTTPS):** `https://client-contact-log.pages.dev/listing-icon-144.png`
 
 **Overview (one line):**
 
@@ -31,17 +31,17 @@ Power-Up ID: `6afbc51a9774e9c6d48078d4`
 
 | Use | URL |
 |---|---|
-| Animation: adding a record, badge updating | `https://zhijievisa.github.io/client-contact-log/img/demo.gif` |
-| Contact log on the card, with card-front badges | `https://zhijievisa.github.io/client-contact-log/img/contact-log.png` |
-| Adding a record | `https://zhijievisa.github.io/client-contact-log/img/new-record.png` |
-| Board overview | `https://zhijievisa.github.io/client-contact-log/img/overview.png` |
+| Animation: adding a record, badge updating | `https://client-contact-log.pages.dev/img/demo.gif` |
+| Contact log on the card, with card-front badges | `https://client-contact-log.pages.dev/img/contact-log.png` |
+| Adding a record | `https://client-contact-log.pages.dev/img/new-record.png` |
+| Board overview | `https://client-contact-log.pages.dev/img/overview.png` |
 
 **Description:**
 
 ```
 Client Contact Log is for anyone who runs client work on Trello cards: lawyers, migration agents, accountants, consultants, agencies, freelancers. It gives each card its own record of contact with the client, separate from Comments, and tells you which clients have not heard from you lately.
 
-![Adding a contact record](https://zhijievisa.github.io/client-contact-log/img/demo.gif)
+![Adding a contact record](https://client-contact-log.pages.dev/img/demo.gif)
 
 **The problem it solves**
 
@@ -55,7 +55,7 @@ On a client card, Comments end up doing two jobs. The team uses them to talk to 
 
 **What you see on the card**
 
-![Contact log on the card](https://zhijievisa.github.io/client-contact-log/img/contact-log.png)
+![Contact log on the card](https://client-contact-log.pages.dev/img/contact-log.png)
 
 - Every contact with its date and time, channel, direction and who logged it.
 - Edit or delete any record.
@@ -66,7 +66,7 @@ On a client card, Comments end up doing two jobs. The team uses them to talk to 
 
 - A badge on the front of each card: "Contact today", "Contact 12d ago". It turns red after the number of days you choose.
 
-![Board overview](https://zhijievisa.github.io/client-contact-log/img/overview.png)
+![Board overview](https://client-contact-log.pages.dev/img/overview.png)
 
 - A "Client contact" button that lists every card with a log, longest silence first, with the number of contacts made in the last 7 days.
 - CSV export of every record on the board.
@@ -97,7 +97,7 @@ Everything is stored on your own board using Trello's Power-Up storage. There is
 - It is a working log, not a substitute for any client file you are required to keep.
 - Free to use.
 
-Help and support: https://zhijievisa.github.io/client-contact-log/support.html
+Help and support: https://client-contact-log.pages.dev/support
 ```
 
 **Categories:** choose from what the form offers; closest fits are "Board utilities" and "Communication & collaboration".
@@ -106,7 +106,7 @@ Help and support: https://zhijievisa.github.io/client-contact-log/support.html
 
 | Item | Value |
 |---|---|
-| Connector URL | `https://zhijievisa.github.io/client-contact-log/index.html` |
+| Connector URL | `https://client-contact-log.pages.dev/` |
 | Power-Up ID | `6afbc51a9774e9c6d48078d4` |
 | Preferred launch date | As soon as approved |
 
