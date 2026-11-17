@@ -82,13 +82,13 @@ label.check input { width: auto; margin: 0; }
 .entry { border-bottom: 1px solid var(--line); padding: 7px 0; }
 .entry:last-child { border-bottom: 0; }
 .entry.editing { background: var(--blue-bg); border-radius: 6px; padding-left: 6px; padding-right: 6px; }
-.entry .meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.entry .meta .grow { flex: 1; }
+.entry .meta { display: flex; align-items: flex-start; gap: 8px; }
+.entry .meta .info { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 8px; flex: 1; min-width: 0; }
 .entry .when { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .entry .dir { font-size: 12px; white-space: nowrap; }
 .entry .dir.d0 { color: var(--green); }
 .entry .dir.d1 { color: var(--blue); }
-.entry .acts { white-space: nowrap; }
+.entry .acts { white-space: nowrap; flex: none; text-align: right; }
 .entry .body { margin-top: 3px; white-space: pre-wrap; overflow-wrap: anywhere; }
 .arch { margin-top: 4px; }
 

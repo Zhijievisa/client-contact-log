@@ -11,7 +11,7 @@
   'use strict';
 
   var CCL = {
-    VERSION: '1.1.1', KEY: 'log', CFG_KEY: 'cfg',
+    VERSION: '1.1.2', KEY: 'log', CFG_KEY: 'cfg',
     HARD_LIMIT: 4096,   // Trello's limit for card/shared
     SIZE_LIMIT: 4000,   // what this Power-Up allows itself, leaving a margin
     WARN_PCT: 85, TEXT_MAX: 600, WHO_MAX: 24, WHO_KEY: 'who', PREVIEW: 5,

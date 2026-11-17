@@ -6,7 +6,7 @@ Comments & activity can stay for the team's internal notes.
 Each record has the time, the channel, who initiated the contact, a "logged by" label and a short summary. Card
 badges and a board overview show which clients have gone longest without contact.
 
-Version 1.1.1 · English and 简体中文
+Version 1.1.2 · English and 简体中文
 
 ## Features
 

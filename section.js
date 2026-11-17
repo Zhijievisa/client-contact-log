@@ -200,12 +200,15 @@
         } })
       ]) : null;
       return h('div', { class: 'entry' + (form && form.id === en.i ? ' editing' : '') }, [
+        // The details may wrap on a narrow card; the buttons stay at the top right so that the
+        // second click of a delete lands where the first one did.
         h('div', { class: 'meta' }, [
-          h('span', { class: 'when', text: CCL.fmtDateTime(en.t) }),
-          h('span', { class: 'pill ch', text: CCL.chLabel(en.c) }),
-          h('span', { class: 'dir d' + en.d, text: (en.d ? '→ ' : '← ') + CCL.dirLabel(en.d) }),
-          en.w ? h('span', { class: 'muted small who', text: tr('by', en.w) }) : null,
-          h('span', { class: 'grow' }),
+          h('div', { class: 'info' }, [
+            h('span', { class: 'when', text: CCL.fmtDateTime(en.t) }),
+            h('span', { class: 'pill ch', text: CCL.chLabel(en.c) }),
+            h('span', { class: 'dir d' + en.d, text: (en.d ? '→ ' : '← ') + CCL.dirLabel(en.d) }),
+            en.w ? h('span', { class: 'muted small who', text: tr('by', en.w) }) : null
+          ]),
           acts
         ]),
         h('div', { class: 'body', text: en.x })
