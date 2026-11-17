@@ -131,3 +131,14 @@ h2 { font-size: 14px; margin: 18px 0 6px; }
 .field > label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
 .checks { display: flex; flex-wrap: wrap; gap: 6px 14px; }
 .listbox { max-height: 150px; overflow: auto; border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+
+/* static pages (privacy, support) */
+.doc { max-width: 720px; margin: 0 auto; padding: 28px 20px 60px; font-size: 15px; line-height: 1.6; }
+.doc h1 { font-size: 24px; margin: 0 0 4px; } .doc h2 { font-size: 17px; margin: 26px 0 6px; }
+.doc p, .doc li { color: var(--fg); } .doc .muted { font-size: 13px; }
+.doc code { background: var(--panel); padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+.doc table { margin: 8px 0; } .doc td, .doc th { padding: 6px 8px; }
+/* welcome modal */
+.lead { font-size: 15px; margin: 0 0 10px; }
+ol.steps { margin: 0 0 12px; padding-left: 22px; }
+ol.steps li { margin-bottom: 8px; line-height: 1.5; }

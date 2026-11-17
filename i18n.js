@@ -98,11 +98,13 @@
   // overview
   add('t_cards', 'Cards with a log', '有记录的卡片');
   add('t_cards_sub', '{0} cards without one', '另有 {0} 张无记录');
+  add('t_cards_sub_1', '1 card without one', '另有 1 张无记录');
   add('t_stale', 'No contact for {0}+ days', '超过 {0} 天未联系');
   add('t_stale_off', 'Stale reminder is off', '未开启未联系提醒');
   add('t_stale_sub', 'excluding muted lists', '不含免提醒列表');
   add('t_week', 'Contacts in last 7 days', '近 7 天联系次数');
   add('t_week_sub', 'across {0} cards', '涉及 {0} 张卡片');
+  add('t_week_sub_1', 'across 1 card', '涉及 1 张卡片');
   add('t_full', 'Logs over 85% full', '空间超过 85% 的卡片');
   add('t_full_sub', 'archive old records', '需要归档旧记录');
   add('loading', 'Loading… reading every card on this board. Large boards take a few seconds.', '读取中…正在读取本看板的每张卡片，卡片多时需要几秒。');
@@ -133,6 +135,19 @@
   add('saved', 'Saved', '已保存');
   add('e_size', 'Settings are too large to store. Remove some custom channels or muted lists.', '设置内容过大，无法保存。请减少自定义渠道或免提醒列表。');
   add('about', 'Client Contact Log v{0}. Data is stored only on your Trello cards.', 'Client Contact Log v{0}。数据只保存在你的 Trello 卡片上。');
+  add('privacy', 'Privacy', '隐私政策');
+  add('support', 'Help & support', '帮助与支持');
+
+  // welcome modal (shown once when the Power-Up is enabled on a board)
+  add('wel_title', 'Welcome to Client Contact Log', '欢迎使用 Client Contact Log');
+  add('wel_intro', 'Keep a record of every contact with the client on the card itself, and keep Comments for your team.', '把每一次与客户的联系记在卡片上，评论区留给团队内部沟通。');
+  add('wel_1', 'Open a card and scroll to "Client contact log". Click "+ Log a client contact", pick the channel and who initiated it, write a short summary and save.', '打开一张卡片，滚动到「客户联系记录」。点「+ 新增联系记录」，选渠道和发起方，写一句摘要后保存。');
+  add('wel_2', 'The card front shows how long ago the last contact was. It turns red after the number of days you set.', '卡片正面会显示距上次联系过了多久，超过你设定的天数会变红。');
+  add('wel_3', 'Use the "Client contact" button at the top of the board to see which clients have gone longest without contact, and to export every record as CSV.', '看板顶部的「客户联系总览」按钮会列出最久没联系的客户，并可把全部记录导出为 CSV。');
+  add('wel_limit', 'Trello allows about 4,000 characters of Power-Up data per card: roughly 30 to 50 records. The section shows the space used; "Archive old records" lets you copy the oldest records into your own file and remove them from the card.', 'Trello 每张卡片只给 Power-Up 约 4000 个字符，大约 30 到 50 条记录。区块会显示已用空间；「归档旧记录」可以把最早的记录复制到你自己的档案后从卡片移除。');
+  add('wel_data', 'Your data stays on this Trello board. There is no external server and no account to create. Records are shown only to board members with edit access; do not use this on public boards.', '数据只保存在这个 Trello 看板里，没有外部服务器，也不需要注册账号。记录仅对有编辑权限的看板成员显示；不要用在公开看板上。');
+  add('wel_set', 'Language, the number of days, channels and lists that are never flagged are under this Power-Up\'s Settings.', '语言、提醒天数、渠道和免提醒的列表，都在本 Power-Up 的「设置」里。');
+  add('wel_ok', 'Got it', '知道了');
   add('demo', 'Demo mode: fictional data, nothing is saved. Inside Trello this banner does not appear.', '演示模式：虚构数据，不会保存。在 Trello 里不会出现这一条。');
 
   root.CCL_STR = STR;

@@ -50,7 +50,11 @@
         lists.length ? h('div', { class: 'field' }, [h('label', { text: tr('s_xl') }), h('div', { class: 'listbox' }, listBoxes)]) : null,
         msg ? h('div', { class: 'note ' + msg.kind, text: msg.text }) : null,
         h('div', { class: 'foot' }, [
-          h('span', { class: 'muted small', text: tr('about', CCL.VERSION) }),
+          h('span', { class: 'muted small' }, [
+            tr('about', CCL.VERSION) + ' ',
+            h('a', { class: 'link', href: './privacy.html', target: '_blank', rel: 'noopener', text: tr('privacy') }), ' · ',
+            h('a', { class: 'link', href: './support.html', target: '_blank', rel: 'noopener', text: tr('support') })
+          ]),
           h('span', { class: 'grow' }),
           h('button', { type: 'button', class: 'primary', text: tr('save_settings'), onclick: save })
         ])
