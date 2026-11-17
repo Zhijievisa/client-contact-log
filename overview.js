@@ -123,6 +123,9 @@
       ]);
     }
 
+    // Reading plugin data card by card takes several seconds on a board with hundreds of cards.
+    CCL.useCfg(null);
+    CCL.fill(root, [h('div', { class: 'empty', text: tr('loading') })]);
     return t.render(load);
   };
 })();

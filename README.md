@@ -3,7 +3,7 @@
 Adds a "Client contact log" section to every card: one record per contact with the client
 (time, channel, who initiated, who logged it, summary). Comments & activity stay free for internal notes.
 
-Version 1.0.0 · English and 简体中文 · private Power-Up, not for the public directory
+Version 1.0.1 · English and 简体中文 · private Power-Up, not for the public directory
 
 ## What it does
 
@@ -32,8 +32,7 @@ The footer shows space used. From 85% the section warns; when full, a new record
 text is kept). **Archive old records** shows the oldest records as text to copy into the client file,
 then removes them from the card after you confirm. The card keeps a count of archived records.
 
-These figures assume Trello counts one Chinese character as one character. That has not been checked on a
-live board. If Trello counts differently, saves are refused earlier and the same "full" message appears.
+Trello counts one Chinese character as one character (checked on a live board).
 
 Mobile: Trello's phone apps do not show custom Power-Up sections. Use the web version.
 
@@ -65,8 +64,9 @@ Opening `section.html`, `overview.html` or `settings.html` outside Trello shows 
 
 ## First-run checklist
 
-Tested offline against a simulated Trello (data logic, connector, and the pages in Chrome).
-**Not yet run inside a live Trello board.** On a test card:
+Tested offline against a simulated Trello, then on a live board on 17 Nov 2026: section shows, a record
+with a Chinese summary saves and deletes, the card badge and the overview appear. Trello counts one Chinese
+character as one character (a 1,899-character, 5,381-byte log saved). To repeat the check on a test card:
 
 1. The section "Client contact log" appears; add a record with a Chinese summary; close and reopen the card.
 2. The card front shows "Contact today".

@@ -105,6 +105,7 @@
   add('t_week_sub', 'across {0} cards', '涉及 {0} 张卡片');
   add('t_full', 'Logs over 85% full', '空间超过 85% 的卡片');
   add('t_full_sub', 'archive old records', '需要归档旧记录');
+  add('loading', 'Loading… reading every card on this board. Large boards take a few seconds.', '读取中…正在读取本看板的每张卡片，卡片多时需要几秒。');
   add('ov_h', 'Longest without contact first', '按未联系天数排序');
   add('ov_muted', 'Include muted lists', '包含免提醒列表');
   add('c_card', 'Card', '卡片');
