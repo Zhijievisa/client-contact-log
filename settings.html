@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Client Contact Log — settings</title>
+  <link rel="stylesheet" href="./ui.css">
+</head>
+<body>
+  <div id="ccl-root" class="ccl pad"></div>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script src="./i18n.js"></script>
+  <script src="./shared.js"></script>
+  <script src="./settings.js"></script>
+  <script>
+    (function () {
+      var t = CCL.getT();
+      CCL.applyTheme(t);
+      CCL.mountSettings(t, document.getElementById('ccl-root'));
+    })();
+  </script>
+</body>
+</html>
