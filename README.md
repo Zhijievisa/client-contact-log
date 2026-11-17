@@ -6,7 +6,7 @@ Comments & activity can stay for the team's internal notes.
 Each record has the time, the channel, who initiated the contact, a "logged by" label and a short summary. Card
 badges and a board overview show which clients have gone longest without contact.
 
-Version 1.1.2 · English and 简体中文
+Version 1.2.0 · English and 简体中文
 
 ## Features
 
@@ -40,6 +40,13 @@ them from the card after confirmation. The card keeps a count of archived record
 
 Mobile: Trello's phone apps do not show sections added by Power-Ups.
 
+## Security
+
+Every page carries a Content Security Policy in a `<meta>` tag: scripts and styles only from this site and
+Trello's Power-Up library, no inline script, no inline style, no connections except to Trello. `_headers`
+holds the same policy plus `frame-ancestors` and the other security headers, for hosts that can send response
+headers (Cloudflare Pages, Netlify). GitHub Pages cannot send custom headers.
+
 ## Files
 
 | File | Purpose |
@@ -49,7 +56,8 @@ Mobile: Trello's phone apps do not show sections added by Power-Ups.
 | `overview.html`, `overview.js` | The board overview modal |
 | `settings.html`, `settings.js` | Board settings |
 | `welcome.html`, `welcome.js` | Getting-started modal shown when the Power-Up is enabled |
-| `shared.js`, `i18n.js`, `ui.css` | Data logic, interface strings (English and Chinese), styles |
+| `shared.js`, `i18n.js`, `ui.css`, `boot.js` | Data logic, interface strings (English and Chinese), styles, page start-up |
+| `_headers` | Security response headers for Cloudflare Pages / Netlify |
 | `icon.svg`, `icon-white.svg` | Button icons |
 | `privacy.html`, `support.html` | Privacy policy and help page |
 | `LISTING.md`, `listing-icon*.png`, `img/` | Copy, icon and images for the Trello directory listing |

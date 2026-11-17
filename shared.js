@@ -11,7 +11,7 @@
   'use strict';
 
   var CCL = {
-    VERSION: '1.1.2', KEY: 'log', CFG_KEY: 'cfg',
+    VERSION: '1.2.0', KEY: 'log', CFG_KEY: 'cfg',
     HARD_LIMIT: 4096,   // Trello's limit for card/shared
     SIZE_LIMIT: 4000,   // what this Power-Up allows itself, leaving a margin
     WARN_PCT: 85, TEXT_MAX: 600, WHO_MAX: 24, WHO_KEY: 'who', PREVIEW: 5,
@@ -311,6 +311,7 @@
       else if (k === 'text') el.textContent = v;
       else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), v);
       else if (k === 'value') el.value = v;
+      else if (k === 'style') el.style.cssText = v;   // CSSOM, allowed under a strict style-src
       else if (v === true) el.setAttribute(k, '');
       else el.setAttribute(k, v);
     });
