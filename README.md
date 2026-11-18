@@ -42,10 +42,11 @@ Mobile: Trello's phone apps do not show sections added by Power-Ups.
 
 ## Security
 
-Every page carries a Content Security Policy in a `<meta>` tag: scripts and styles only from this site and
-Trello's Power-Up library, no inline script, no inline style, no connections except to Trello. `_headers`
-holds the same policy plus `frame-ancestors` and the other security headers, for hosts that can send response
-headers (Cloudflare Pages, Netlify). GitHub Pages cannot send custom headers.
+The Content Security Policy is sent as an HTTP response header from `_headers` (Cloudflare Pages, Netlify):
+scripts only from this site and Trello's Power-Up library, with no inline script and no eval; no connections
+except to Trello; framing only by Trello. The Power-Up's own code uses no inline styles, but `style-src`
+allows them because Trello's Power-Up library injects inline styles into each page. `_headers` also sets the
+other security headers. The pages carry no `<meta>` copy of the policy. GitHub Pages cannot send custom headers.
 
 ## Files
 
